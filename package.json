@@ -1,0 +1,40 @@
+{
+  "name": "scss-starter-kit",
+  "version": "0.1.0-beta",
+  "description": "SCSS starter kit for new projects",
+  "main": "index.js",
+  "scripts": {
+    "start": "webpack-dev-server --config webpack.dev.js --open --progress",
+    "build": "webpack --config webpack.prod.js --progress",
+    "sass:watch": "sass --watch scss/style.scss:dist/assets/style.css"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.25.7",
+    "@babel/core": "^7.25.7",
+    "@babel/preset-env": "^7.26.9",
+    "babel-loader": "^10.0.0",
+    "copy-webpack-plugin": "^13.0.0",
+    "css-loader": "^7.1.2",
+    "html-inline-css-webpack-plugin": "^1.11.2",
+    "html-loader": "^5.0.0",
+    "html-webpack-plugin": "^5.6.0",
+    "mini-css-extract-plugin": "^2.9.0",
+    "postcss": "^8.4.41",
+    "postcss-loader": "^8.1.1",
+    "postcss-preset-env": "^10.1.5",
+    "postcss-sort-media-queries": "^5.2.0",
+    "purgecss-webpack-plugin": "^7.0.2",
+    "sass": "^1.86.3",
+    "sass-loader": "^16.0.5",
+    "style-loader": "^4.0.0",
+    "terser-webpack-plugin": "^5.3.10",
+    "webpack": "^5.92.1",
+    "webpack-cli": "^6.0.1",
+    "webpack-dev-server": "^5.0.4",
+    "webpack-merge": "^6.0.1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "browserslist": "> 0.2%, last 5 versions"
+}
