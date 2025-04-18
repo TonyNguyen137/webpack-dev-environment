@@ -7,6 +7,4 @@ dist/
 *.log
 
 notes.md
-vite-setting/
 
-src/
