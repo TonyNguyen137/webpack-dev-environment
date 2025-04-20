@@ -3,7 +3,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 console.log('fonts path: ', path.resolve(__dirname, 'src', 'assets', 'fonts'));
 
 module.exports = {
-  entry: { index: './src/js/index.js' },
+  entry: { index: './index.js' },
   stats: {
     // enables scss @debug
     loggingDebug: ['sass-loader'],
@@ -17,7 +17,7 @@ module.exports = {
     new HtmlWebpackPlugin({
       title: 'testing',
       filename: 'index.html',
-      template: './src/index.html',
+      template: './index.html',
     }),
   ],
   module: {
