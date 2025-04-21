@@ -42,7 +42,7 @@ module.exports = (env, argv) => {
       // }),
 
       new PurgeCSSPlugin({
-        paths: glob.sync(`./src/**/index.html`, { nodir: true }),
+        paths: glob.sync(`./index.html`, { nodir: true }),
         // safelist: {
         //   standard: [/aria/, /data/],
         //   deep: [/aria/, /data/, /^.*\[/],
