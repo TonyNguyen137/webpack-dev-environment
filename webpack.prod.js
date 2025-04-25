@@ -41,14 +41,14 @@ module.exports = (env, argv) => {
       //   patterns: [{ from: 'src/assets/test' }],
       // }),
 
-      new PurgeCSSPlugin({
-        paths: glob.sync(`./index.html`, { nodir: true }),
-        // safelist: {
-        //   standard: [/aria/, /data/],
-        //   deep: [/aria/, /data/, /^.*\[/],
-        //   greedy: [/aria/, /data/, /^.*\[/],
-        // },
-      }),
+      // new PurgeCSSPlugin({
+      //   paths: glob.sync(`./index.html`, { nodir: true }),
+      //   // safelist: {
+      //   //   standard: [/aria/, /data/],
+      //   //   deep: [/aria/, /data/, /^.*\[/],
+      //   //   greedy: [/aria/, /data/, /^.*\[/],
+      //   // },
+      // }),
     ],
     module: {
       rules: [
