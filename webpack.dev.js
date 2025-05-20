@@ -2,6 +2,7 @@ const path = require('node:path');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const common = require('./webpack.common');
 const { merge } = require('webpack-merge');
+console.log('static: ', path.join(__dirname, 'src', 'demos'));
 
 module.exports = (env, argv) => {
   return merge(common, {
@@ -45,7 +46,8 @@ module.exports = (env, argv) => {
     },
     devServer: {
       static: {
-        directory: path.join(__dirname, 'dist'),
+        directory: path.join(__dirname, 'src', 'demos'),
+        publicPath: '/demos',
       },
       compress: true,
       port: 9000,
