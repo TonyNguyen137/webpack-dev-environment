@@ -36,5 +36,8 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "browserslist": "> 0.2%, last 5 versions"
+  "browserslist": "> 0.2%, last 5 versions",
+  "dependencies": {
+    "jarallax": "^2.2.1"
+  }
 }
