@@ -19,6 +19,11 @@ module.exports = {
       filename: 'index.html',
       template: './index.html',
     }),
+    new HtmlWebpackPlugin({
+      title: 'theme',
+      filename: 'theme.html',
+      template: './theme.html',
+    }),
   ],
   module: {
     rules: [
