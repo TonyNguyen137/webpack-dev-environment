@@ -1,48 +1,48 @@
-const path = require('node:path');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
-console.log('fonts path: ', path.resolve(__dirname, 'src', 'assets', 'fonts'));
+const path = require("node:path");
+const HtmlWebpackPlugin = require("html-webpack-plugin");
+console.log("fonts path: ", path.resolve(__dirname, "src", "assets", "fonts"));
 
 module.exports = {
-  entry: { index: './index.js' },
+  entry: { index: "./index.js" },
   stats: {
     // enables scss @debug
-    loggingDebug: ['sass-loader'],
+    loggingDebug: ["sass-loader"],
   },
   resolve: {
     alias: {
-      '@fonts': path.resolve(__dirname, 'src', 'assets', 'fonts'),
+      "@fonts": path.resolve(__dirname, "src", "assets", "fonts"),
     },
   },
   plugins: [
     new HtmlWebpackPlugin({
-      title: 'testing',
-      filename: 'index.html',
-      template: './index.html',
+      title: "testing",
+      filename: "index.html",
+      template: "./index.html",
     }),
     new HtmlWebpackPlugin({
-      title: 'theme',
-      filename: 'theme.html',
-      template: './theme.html',
+      title: "theme",
+      filename: "theme.html",
+      template: "./theme.html",
     }),
   ],
   module: {
     rules: [
       {
         test: /\.html$/i,
-        loader: 'html-loader',
+        loader: "html-loader",
       },
       {
         test: /\.(woff2?|eot|ttf|otf)$/i,
-        type: 'asset/resource',
+        type: "asset/resource",
         generator: {
-          filename: 'public/[name][ext]',
+          filename: "public/[name][ext]",
         },
       },
       {
         test: /\.(png|jpe?g|avif|svg|webp)$/i,
-        type: 'asset', // Automatically chooses between inline/resource
+        type: "asset", // Automatically chooses between inline/resource
         generator: {
-          filename: 'public/[name][ext]',
+          filename: "public/[name][ext]",
         },
         parser: {
           dataUrlCondition: {
@@ -53,9 +53,9 @@ module.exports = {
 
       {
         test: /sprite\.svg$/,
-        type: 'asset/resource',
+        type: "asset/resource",
         generator: {
-          filename: 'public/[name].[contenthash:6][ext]',
+          filename: "public/[name].[contenthash:6][ext]",
         },
       },
     ],
