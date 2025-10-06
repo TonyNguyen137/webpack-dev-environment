@@ -1,4 +1,5 @@
 {
   "editor.wrapOnEscapedLineFeeds": true,
-  "workbench.editor.wrapTabs": true
+  "workbench.editor.wrapTabs": true,
+  "editor.snippetSuggestions": "top"
 }
