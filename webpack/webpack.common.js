@@ -4,7 +4,9 @@ const CopyPlugin = require('copy-webpack-plugin');
 
 module.exports = {
   context: path.resolve(__dirname, '..'),
-  entry: { index: './index.js' },
+  entry: {
+    index: './index.js',
+  },
 
   stats: {
     loggingDebug: ['sass-loader'],

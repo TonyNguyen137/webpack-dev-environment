@@ -6,7 +6,7 @@ const config = {
     }),
     require('postcss-preset-env')({
       stage: 3,
-      //   features: { 'custom-properties': false },
+      features: { 'custom-properties': false },
     }),
   ],
 };

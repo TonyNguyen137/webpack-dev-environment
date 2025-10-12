@@ -64,6 +64,7 @@
   "browserslist": "defaults",
   "dependencies": {
     "@splidejs/splide": "^4.1.4",
-    "leaflet": "^1.9.4"
+    "leaflet": "^1.9.4",
+    "lodash": "^4.17.21"
   }
 }

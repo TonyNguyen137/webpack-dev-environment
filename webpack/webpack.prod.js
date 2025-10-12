@@ -20,6 +20,7 @@ module.exports = (env, argv) => {
       path: path.resolve(__dirname, '..', 'dist'),
       filename: 'public/[name].[contenthash:6].min.js',
       clean: true,
+      chunkFilename: 'public/[name].[contenthash:6].min.js',
     },
     plugins: [
       new MiniCssExtractPlugin({
@@ -83,10 +84,48 @@ module.exports = (env, argv) => {
         },
       ],
     },
+
     optimization: {
+      // runtimeChunk: 'single',
+
+      splitChunks: {
+        chunks: 'all',
+        // name: (module, chunks, cacheGroupKey) => {
+        //   return `${cacheGroupKey}`;
+        // },
+
+        cacheGroups: {
+          accordion: {
+            test: /[\\/]src[\\/]js[\\/]components[\\/]Accordion(\.js)?$/,
+            name: 'accordion',
+            chunks: 'async',
+            enforce: true, // <- force its own chunk regardless of size
+          },
+          // navbar: {
+          //   test: /[\\/]src[\\/]js[\\/]components[\\/]Navbar-Offcanvas(\.js)?$/,
+          //   name: 'navbar',
+          //   chunks: 'async',
+          //   enforce: true,
+          // },
+          tabs: {
+            test: /[\\/]src[\\/]js[\\/]components[\\/]Tabs(\.js)?$/,
+            name: 'tabs',
+            chunks: 'async',
+            enforce: true,
+          },
+
+          // lodash: {
+          //   test: /[\\/]node_modules[\\/]lodash[\\/]/, // <– nur lodash!
+          //   name: 'lodash', // <– Chunk-Name!
+          // },
+          // vendors: {
+          //   test: /[\\/]node_modules[\\/]/,
+          //   name: 'vendors',
+          // },
+        },
+      },
       minimize: true,
       minimizer: [
-        '...',
         new TerserPlugin({
           terserOptions: {
             output: {
