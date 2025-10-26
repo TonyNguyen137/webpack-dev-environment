@@ -2,13 +2,13 @@ const path = require('node:path');
 const HTMLInlineCSSWebpackPlugin = require('html-inline-css-webpack-plugin').default;
 const common = require('./webpack.common');
 const { merge } = require('webpack-merge');
-// const glob = require('glob');
 const glob = require('glob-all');
 const { PurgeCSSPlugin } = require('purgecss-webpack-plugin');
 const TerserPlugin = require('terser-webpack-plugin');
 const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const ImageMinimizerPlugin = require('image-minimizer-webpack-plugin');
+const { chunk } = require('lodash');
 
 module.exports = (env, argv) => {
   console.log('env: ', env);
@@ -20,7 +20,25 @@ module.exports = (env, argv) => {
       path: path.resolve(__dirname, '..', 'dist'),
       filename: 'public/[name].[contenthash:6].min.js',
       clean: true,
-      chunkFilename: 'public/[name].[contenthash:6].min.js',
+      chunkFilename: (pathData) => {
+        // auto-generated ID by Webpack (e.g. "src_js_components_${Component}_js")
+        // (The ID is derived from your file path + filename if optimization.chunkIds is set to 'named')
+        // If a chunk has an explicit name defined, id will match that name instead of the auto-generated ID.
+        let id = pathData.chunk.id;
+        let name = null;
+
+        let arr = id.split('_');
+
+        if (arr.length > 1) {
+          // grab the ${Component} as a readable name.
+          name = arr.at(-2);
+        } else {
+          // use the explicit name
+          name = arr[0];
+        }
+
+        return `public/${name}.[contenthash:4].min.js`;
+      },
     },
     plugins: [
       new MiniCssExtractPlugin({
@@ -86,41 +104,40 @@ module.exports = (env, argv) => {
     },
 
     optimization: {
+      chunkIds: 'named',
       // runtimeChunk: 'single',
 
       splitChunks: {
         chunks: 'all',
-        // name: (module, chunks, cacheGroupKey) => {
-        //   return `${cacheGroupKey}`;
-        // },
 
         cacheGroups: {
-          accordion: {
-            test: /[\\/]src[\\/]js[\\/]components[\\/]Accordion(\.js)?$/,
-            name: 'accordion',
-            chunks: 'async',
-            enforce: true, // <- force its own chunk regardless of size
-          },
+          // accordion: {
+          //   test: /[\\/]src[\\/]js[\\/]components[\\/]Accordion(\.js)?$/,
+          //   name: 'accordion',
+          //   chunks: 'async',
+          //   enforce: true, // <- force its own chunk regardless of size
+          // },
           // navbar: {
           //   test: /[\\/]src[\\/]js[\\/]components[\\/]Navbar-Offcanvas(\.js)?$/,
           //   name: 'navbar',
           //   chunks: 'async',
           //   enforce: true,
           // },
-          tabs: {
-            test: /[\\/]src[\\/]js[\\/]components[\\/]Tabs(\.js)?$/,
-            name: 'tabs',
-            chunks: 'async',
-            enforce: true,
-          },
-
+          // tabs: {
+          //   test: /[\\/]src[\\/]js[\\/]components[\\/]Tabs(\.js)?$/,
+          //   name: 'tabs',
+          //   chunks: 'async',
+          //   enforce: true,
+          // },
           // lodash: {
           //   test: /[\\/]node_modules[\\/]lodash[\\/]/, // <– nur lodash!
           //   name: 'lodash', // <– Chunk-Name!
           // },
-          // vendors: {
-          //   test: /[\\/]node_modules[\\/]/,
-          //   name: 'vendors',
+          // utilities: {
+          //   test: /[\\/]src[\\/]js[\\/]utils[\\/]/,
+          //   name: 'utilities',
+          //   minSize: 0, // kleine Helper sofort bündeln
+          //   minChunks: 2,
           // },
         },
       },
